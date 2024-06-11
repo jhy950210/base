@@ -50,6 +50,29 @@ kotlin {
 	}
 }
 
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/main/java', 'src/main/kotlin']
+		}
+		resources {
+			srcDirs = ['src/main/resources']
+		}
+	}
+	test {
+		java {
+			srcDirs = ['src/test/java', 'src/test/kotlin']
+		}
+		resources {
+			srcDirs = ['src/test/resources']
+		}
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	enabled=false
 }
