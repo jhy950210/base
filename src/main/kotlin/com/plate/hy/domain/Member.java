@@ -7,9 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Entity
 @Table(name = "members")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Getter
-@Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +21,11 @@ public class Member {
     private String password;
 
     public static Member create(String name, String password, PasswordEncoder passwordEncoder) {
-        return Member.builder()
-                .name(name)
-                .password(passwordEncoder.encode(password))
-                .build();
+        return new Member(name, passwordEncoder.encode(password));
+    }
+
+    private Member(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 }
