@@ -11,10 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 class Member private constructor(
-    @Column(name = "member_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private val name: String,
 
-    @Column(name = "member_password", nullable = false)
+    @Column(name = "password", nullable = false)
     private val password: String
 ) {
     @Id
