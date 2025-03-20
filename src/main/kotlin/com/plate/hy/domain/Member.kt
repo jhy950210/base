@@ -1,31 +1,30 @@
-package com.plate.hy.domain;
+package com.plate.hy.domain
 
-import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import jakarta.persistence.*
+import lombok.AccessLevel
+import lombok.Getter
+import lombok.NoArgsConstructor
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Entity
 @Table(name = "members")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Member {
+class Member private constructor(
+    @Column(name = "member_name", nullable = false)
+    private val name: String,
+
+    @Column(name = "member_password", nullable = false)
+    private val password: String
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id", nullable = false)
-    private Long id;
+    private val id: Long? = null
 
-    @Column(name = "member_name", nullable = false)
-    private String name;
-
-    @Column(name = "member_password", nullable = false)
-    private String password;
-
-    public static Member create(String name, String password, PasswordEncoder passwordEncoder) {
-        return new Member(name, passwordEncoder.encode(password));
-    }
-
-    private Member(String name, String password) {
-        this.name = name;
-        this.password = password;
+    companion object {
+        fun create(name: String, password: String?, passwordEncoder: PasswordEncoder): Member {
+            return Member(name, passwordEncoder.encode(password))
+        }
     }
 }

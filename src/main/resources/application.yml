@@ -32,3 +32,8 @@ springdoc:
   api-docs:
     groups:
       enabled: true
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

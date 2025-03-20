@@ -6,6 +6,12 @@ plugins {
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.9.24'
 }
 
+allOpen {
+	annotation("jakarta.persistence.Entity")
+	annotation("jakarta.persistence.Embeddable")
+	annotation("jakarta.persistence.MappedSuperclass")
+}
+
 group = 'com.plate'
 version = '0.0.1-SNAPSHOT'
 
@@ -50,24 +56,6 @@ kotlin {
 	}
 }
 
-sourceSets {
-	main {
-		java {
-			srcDirs = ['src/main/java', 'src/main/kotlin']
-		}
-		resources {
-			srcDirs = ['src/main/resources']
-		}
-	}
-	test {
-		java {
-			srcDirs = ['src/test/java', 'src/test/kotlin']
-		}
-		resources {
-			srcDirs = ['src/test/resources']
-		}
-	}
-}
 
 tasks.named('test') {
 	useJUnitPlatform()

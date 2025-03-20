@@ -1,6 +1,5 @@
 package com.plate.hy.security
 
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
@@ -14,7 +13,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 @EnableMethodSecurity
 class SecurityConfig(private val jwtAuthenticationFilter: JwtAuthenticationFilter) {
-    private val allowedUrls = arrayOf("/",  "/swagger-ui/**", "/v3/**", "/h2-console/**")
+    private val allowedUrls = arrayOf("/",  "/swagger-ui/**", "/v3/**", "/h2-console/**", "/test", "/error")
 
     @Bean
     fun passwordEncoder() = BCryptPasswordEncoder()
